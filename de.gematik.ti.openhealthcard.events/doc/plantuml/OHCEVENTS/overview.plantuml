@@ -1,0 +1,69 @@
+@startuml
+
+package de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface ICardAccessNumberResponseListener {
+        {abstract} + handleCan()
+    }
+  }
+
+
+  package de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface IPaceKeyResponseListener {
+        {abstract} + handlePaceKey()
+    }
+  }
+
+  package de.gematik.ti.openhealthcard.events.control {
+      class RequestTransmitter {
+          + requestCardAccessNumber()
+          + requestPaceKey()
+      }
+    }
+
+    package de.gematik.ti.openhealthcard.events.response.entities {
+        class CardAccessNumber {
+            - value : String
+            + CardAccessNumber()
+            + getValue()
+        }
+    }
+
+
+    package de.gematik.ti.openhealthcard.events.response.entities {
+        class PaceKey {
+            - enc : byte[]
+            - mac : byte[]
+            + PaceKey()
+            + getEnc()
+            + getMac()
+        }
+    }
+
+    package de.gematik.ti.openhealthcard.events.request {
+        class RequestCardAccessNumberEvent {
+            - canReponseListener : ICardAccessNumberResponseListener
+            + RequestCardAccessNumberEvent()
+            + getCanReponseListener()
+        }
+      }
+
+
+  package de.gematik.ti.openhealthcard.events.request {
+    class RequestPaceKeyEvent {
+        - paceKeyResponseListener : IPaceKeyResponseListener
+        - card : ICard
+        + RequestPaceKeyEvent()
+        + getPaceKeyReponseListener()
+        + getCard()
+    }
+  }
+
+
+  IPaceKeyResponseListener ..> PaceKey
+  ICardAccessNumberResponseListener ..> CardAccessNumber
+  RequestCardAccessNumberEvent ..> ICardAccessNumberResponseListener
+  RequestPaceKeyEvent ..> IPaceKeyResponseListener
+  RequestTransmitter ..> RequestPaceKeyEvent
+  RequestTransmitter ..> RequestCardAccessNumberEvent
+
+@enduml

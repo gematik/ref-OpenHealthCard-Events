@@ -1,0 +1,60 @@
+@startuml
+
+
+
+  namespace de.gematik.ti.openhealthcard.events.request {
+    abstract class de.gematik.ti.openhealthcard.events.request.AbstractRequestEvent {
+        - errorMessage : Optional<String>
+        + getErrorMessage()
+        + getResponseListener()
+        # AbstractRequestEvent()
+        ~ setErrorMessage()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.request {
+    class de.gematik.ti.openhealthcard.events.request.RequestCardAccessNumberEvent {
+        + RequestCardAccessNumberEvent()
+        + RequestCardAccessNumberEvent()
+        + getResponseListener()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.request {
+    class de.gematik.ti.openhealthcard.events.request.RequestPaceKeyEvent {
+        - card : ICard
+        + RequestPaceKeyEvent()
+        + RequestPaceKeyEvent()
+        + getCard()
+        + getResponseListener()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.request {
+    class de.gematik.ti.openhealthcard.events.request.RequestPinNumberEvent {
+        + RequestPinNumberEvent()
+        + RequestPinNumberEvent()
+        + getPinType()
+        + getResponseListener()
+    }
+  }
+  
+
+  de.gematik.ti.openhealthcard.events.request.AbstractRequestEvent o-- de.gematik.ti.openhealthcard.events.response.callbacks.IGeneralResponseListener : responseListener
+  de.gematik.ti.openhealthcard.events.request.RequestCardAccessNumberEvent -up-|> de.gematik.ti.openhealthcard.events.request.AbstractRequestEvent
+  de.gematik.ti.openhealthcard.events.request.RequestPaceKeyEvent -up-|> de.gematik.ti.openhealthcard.events.request.AbstractRequestEvent
+  de.gematik.ti.openhealthcard.events.request.RequestPinNumberEvent -up-|> de.gematik.ti.openhealthcard.events.request.AbstractRequestEvent
+  de.gematik.ti.openhealthcard.events.request.RequestPinNumberEvent o-- de.gematik.ti.openhealthcard.events.control.PinType : pinType
+
+
+
+
+
+
+
+
+
+@enduml

@@ -1,0 +1,7 @@
+include::config.adoc[]
+
+== OpenHealthCard Events
+
+include::OHCEVENTS_Introduction.adoc[]
+include::OHCEVENTS_Overview.adoc[]
+include::OHCEVENTS_GettingStarted.adoc[]

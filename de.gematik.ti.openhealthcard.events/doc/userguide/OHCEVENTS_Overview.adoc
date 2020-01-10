@@ -1,0 +1,189 @@
+include::config.adoc[]
+
+== Overview
+
+This library contains overarching events for several layers.
+That includes general events for info, warn and error
+
+ifndef::useCachePlantuml[]
+
+.OpenHealthCard-Events general Messages
+[plantuml,OHCEVENTS/generated/message,png,caption="{classdia-caption} {counter:class}: ",650]
+----
+include::{plantumldir}/OHCEVENTS/message.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.OpenHealthCard-Events general Messages
+image::OHCEVENTS/generated/message.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+Additionally request events to get asynchronous input from user application
+
+ifndef::useCachePlantuml[]
+
+.OpenHealthCard-Events request events
+[plantuml,OHCEVENTS/generated/request,png,caption="{classdia-caption} {counter:class}: ",650]
+----
+include::{plantumldir}/OHCEVENTS/request.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.OpenHealthCard-Events request events
+image::OHCEVENTS/generated/request.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+For easy use could you use the controller instances to send events to EventBus.
+
+ifndef::useCachePlantuml[]
+
+.OpenHealthCard-Events event controller
+[plantuml,OHCEVENTS/generated/control,png,caption="{classdia-caption} {counter:class}: ",650]
+----
+include::{plantumldir}/OHCEVENTS/control.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.OpenHealthCard-Events event controller
+image::OHCEVENTS/generated/control.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+=== EventTransmitter
+
+For easy use could you use the controller instances to send events to EventBus.
+This Controller Instances are `CommonEventTransmitter` to send information,
+`RequestTransmitter` to generate the context specific Transmitter like PaceKey, PinNumber, etc.
+
+ifndef::useCachePlantuml[]
+
+.OpenHealthCard-Events event controller
+[plantuml,OHCEVENTS/generated/control,png,caption="{classdia-caption} {counter:class}: ",650]
+----
+include::{plantumldir}/OHCEVENTS/control.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.OpenHealthCard-Events event controller
+image::OHCEVENTS/generated/control.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+==== CommonEventTransmitter
+
+For easy usage could you send information, warning or error event with a simple method call like
+
+[source,java]
+.Send Exception as Event
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=ErrorEvent]
+----
+
+Receive an Information Event like:
+
+[source,java]
+.Receive Infromation-Event
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=HandleErrorEvent]
+----
+
+==== RequestTransmitter
+
+Factory to create the context specific Transmitter.
+
+==== RequestTransmitter for CardAccessNumber
+
+This Transmitter create and send the CardAccessNumber specific request events
+
+[source,java]
+.Send CardAccessNumber request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterCardAccessNumber]
+----
+
+If you would inform receivers about failures on previous card access number requests could you send an message as second parameter:
+
+[source,java]
+.Send CardAccessNumber request with message
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterCardAccessNumberMsg]
+----
+
+Receive an CardAccessNumber event and response to the requester
+
+[source,java]
+.Send CardAccessNumber request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=ReceiveTransmitterCardAccessNumber]
+----
+
+==== RequestTransmitter for PaceKey
+
+This Transmitter create and send the PaceKey specific request events
+
+[source,java]
+.Send PaceKey request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterPaceKey]
+----
+
+If you would inform receivers about failures on previous pace key requests could you send an message as second parameter:
+
+[source,java]
+.Send PaceKey request with message
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterPaceKeyMsg]
+----
+
+Receive an PaceKey event and response to the requester
+
+[source,java]
+.Send PaceKey request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=ReceiveTransmitterPaceKey]
+----
+
+==== RequestTransmitter for PinNumber
+
+This Transmitter create and send the PinNumber specific request events
+
+[source,java]
+.Send PinNumber request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterPinNumber]
+----
+
+If you would inform receivers about failures on previous pin number requests could you send an message as second parameter:
+
+[source,java]
+.Send PinNumber request with message
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=RequestTransmitterPinNumberMsg]
+----
+
+Receive an PinNumber event and response to the requester
+
+[source,java]
+.Send PinNumber request
+----
+include::{testdir}/openhealthcard/events/docu/RequestTransmitterDocu.java[indent=0,tags=ReceiveTransmitterPinNumber]
+----
+

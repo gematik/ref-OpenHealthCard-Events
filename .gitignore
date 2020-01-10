@@ -1,0 +1,4 @@
+.idea/
+de.gematik.ti.openhealthcard.events/target/
+de.gematik.ti.openhealthcard.events/.gradle/
+.gradle/

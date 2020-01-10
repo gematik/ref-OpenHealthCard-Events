@@ -1,0 +1,42 @@
+@startuml
+
+
+
+  namespace de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface de.gematik.ti.openhealthcard.events.response.callbacks.ICardAccessNumberResponseListener {
+        {abstract} + handleCan()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface de.gematik.ti.openhealthcard.events.response.callbacks.IGeneralResponseListener {
+        + abortRequest()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface de.gematik.ti.openhealthcard.events.response.callbacks.IPaceKeyResponseListener {
+        {abstract} + handlePaceKey()
+    }
+  }
+  
+
+  namespace de.gematik.ti.openhealthcard.events.response.callbacks {
+    interface de.gematik.ti.openhealthcard.events.response.callbacks.IPinNumberResponseListener {
+        {abstract} + handlePinNumber()
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+@enduml
